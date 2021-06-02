@@ -31,6 +31,10 @@ import timeit
 import numpy as np
 import tflite_runtime.interpreter as tflite
 
+import multiprocessing
+
+
+
 import test_utils
 
 MODIFIER=""
@@ -42,10 +46,10 @@ except:
     delegates = None
     if isinstance(model_path_or_content, bytes):
       return tflite.Interpreter(
-          model_content=model_path_or_content, experimental_delegates=delegates)
+          model_content=model_path_or_content, experimental_delegates=delegates, num_threads=multiprocessing.cpu_count())
     else:
       return tflite.Interpreter(
-          model_path=model_path_or_content, experimental_delegates=delegates)
+          model_path=model_path_or_content, experimental_delegates=delegates, num_threads=multiprocessing.cpu_count())
 
 def run_benchmark(model):
   """Returns average inference time in ms on specified model on random input."""
