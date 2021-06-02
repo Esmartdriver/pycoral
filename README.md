@@ -40,5 +40,10 @@ To build the library yourself, follow these steps:
     Linux architectures. Build is Docker-based, so you need to have it
     installed.
 
-1.  Run `make wheel` to generate Python library wheel and then `pip3 install
-    $(ls dist/*.whl)` to install it
+1.  Run `make wheel` to generate Python library wheel. **Make sure to use native Python, not 
+    pyenv or anaconda for this step.**
+
+1.  Then `pip3 install
+    $(ls dist/*.whl)` to install it.
+
+    
