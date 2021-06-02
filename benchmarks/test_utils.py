@@ -107,7 +107,7 @@ def read_reference(file_name):
     reference: { environment : reference_time}, environment is a string tuple
       while reference_time is a float number.
   """
-  model_list = set()
+  model_list = []
   reference = {}
   with open(reference_path(file_name), newline='') as csvfile:
     reader = csv.reader(csvfile, delimiter=' ', quotechar='|')
@@ -115,8 +115,8 @@ def read_reference(file_name):
     next(reader)
     for row in reader:
       reference[tuple(row[:-1])] = float(row[-1])
-      model_list.add(row[0])
-  return sorted(model_list), reference
+      model_list.append(row[0])
+  return model_list, reference
 
 
 def check_result(reference, result_list, enable_assertion):
