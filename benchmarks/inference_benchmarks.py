@@ -29,10 +29,23 @@ import time
 import timeit
 
 import numpy as np
+import tflite_runtime.interpreter as tflite
 
-from benchmarks import test_utils
-from pycoral.utils.edgetpu import make_interpreter
+import test_utils
 
+MODIFIER=""
+try:
+  from pycoral.utils.edgetpu import make_interpreter
+except:
+  MODIFIER="_notpu"
+  def make_interpreter(model_path_or_content):
+    delegates = None
+    if isinstance(model_path_or_content, bytes):
+      return tflite.Interpreter(
+          model_content=model_path_or_content, experimental_delegates=delegates)
+    else:
+      return tflite.Interpreter(
+          model_path=model_path_or_content, experimental_delegates=delegates)
 
 def run_benchmark(model):
   """Returns average inference time in ms on specified model on random input."""
@@ -59,7 +72,7 @@ def main():
   machine = test_utils.machine_info()
   test_utils.check_cpu_scaling_governor_status()
   models, reference = test_utils.read_reference(
-      'inference_reference_%s.csv' % machine)
+      f'inference_reference_{machine}{MODIFIER}.csv')
 
   results = [('MODEL', 'INFERENCE_TIME')]
   for i, model in enumerate(models, start=1):

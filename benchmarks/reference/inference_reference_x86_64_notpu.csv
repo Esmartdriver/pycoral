@@ -1,0 +1,8 @@
+MODEL INFERENCE_TIME
+inception_v1_224_quant.tflite 3.06
+inception_v4_299_quant.tflite 84.25
+ssd_mobilenet_v1_coco_quant_postprocess.tflite 10.02
+ssd_mobilenet_v2_face_quant_postprocess.tflite 5.36
+mobilenet_v1_1.0_224_quant.tflite 2.17
+mobilenet_v2_1.0_224_quant.tflite 2.29
+deeplabv3_mnv2_dm05_pascal_quant.tflite 100
