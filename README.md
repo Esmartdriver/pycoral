@@ -43,7 +43,6 @@ To build the library yourself, follow these steps:
 1.  Run `make wheel` to generate Python library wheel. **Make sure to use native Python, not 
     pyenv or anaconda for this step.**
 
-1.  Then `pip3 install
-    $(ls dist/*.whl)` to install it.
+1.  Then `pip3 install $(ls dist/*.whl)` to install it.
 
     

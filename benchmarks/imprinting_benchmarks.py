@@ -19,7 +19,7 @@ import time
 
 import numpy as np
 
-from benchmarks import test_utils
+import test_utils
 from pycoral.adapters import classify
 from pycoral.adapters import common
 from pycoral.learn.imprinting.engine import ImprintingEngine
