@@ -50,17 +50,19 @@ def check_cpu_scaling_governor_status():
 def machine_info():
   """Gets platform info to choose reference value."""
   machine = platform.machine()
-  if machine == 'armv7l':
+  if machine == 'armv7l' or machine=="aarch64":
     with open('/proc/device-tree/model') as model_file:
       board_info = model_file.read()
+    print(f"Executing on a {board_info}\n")
     if 'Raspberry Pi 3 Model B Rev' in board_info:
       machine = 'rp3b'
     elif 'Raspberry Pi 3 Model B Plus Rev' in board_info:
       machine = 'rp3b+'
-    elif 'Raspberry Pi 4 Model B Rev 1.1' in board_info:
+    elif 'Raspberry Pi 4 Model B Rev 1.4' in board_info:
       machine = 'rp4b'
     else:
-      machine = 'unknown'
+      pass
+      #machine = 'unknown'
   return machine
 
 
